@@ -1,5 +1,6 @@
 package com.example.plugins
 
+import com.example.routes.orders
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.http.content.*
@@ -14,6 +15,7 @@ fun Application.configureRouting() {
         }
     }
     routing {
+        orders()
         get("/") {
             call.respondText("Hello World!")
         }
