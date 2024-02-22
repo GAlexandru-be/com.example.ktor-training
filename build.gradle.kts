@@ -27,6 +27,7 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation-jvm")
     implementation("io.ktor:ktor-server-core-jvm")
     implementation("io.ktor:ktor-serialization-gson-jvm")
+    implementation("io.ktor:ktor-server-locations:$ktor_version")
     implementation("io.ktor:ktor-server-auth-jvm")
     implementation("io.ktor:ktor-server-partial-content-jvm")
     implementation("io.ktor:ktor-server-host-common-jvm")
