@@ -4,13 +4,22 @@ import com.example.data.DataManager
 import com.example.data.Order
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.locations.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import org.slf4j.LoggerFactory
 import java.util.UUID
 
+@Location("/order/list")
+data class OrderListLocation(val sortBy : String , val asc :Boolean)
+
 fun Route.orders() {
-    val orderManager = DataManager()
+    val orderManager = DataManager
+
+    get<OrderListLocation>() {
+        call.respond(orderManager.sortOrders(it.sortBy,it.asc))
+    }
 
     route("/order") {
         get("/") {
