@@ -4,6 +4,7 @@ import com.example.data.DataManager
 import com.example.data.Order
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.auth.*
 import io.ktor.server.locations.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
@@ -22,10 +23,11 @@ fun Route.orders() {
     }
 
     route("/order") {
-        get("/") {
-            call.respond(orderManager.getAllOrders())
+        authenticate("myauth1") {
+            get("/") {
+                call.respond(orderManager.getAllOrders())
+            }
         }
-
         post("/") {
             val order = call.receive(Order::class)
             orderManager.addOrder(order)
